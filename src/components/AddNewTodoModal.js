@@ -50,7 +50,6 @@ export default function AddNewTodoModal({ handle, open }) {
       description,
       datePosted: date,
     };
-    console.log(date);
     dispatch(addNewTodo(todo));
     dispatch(getTodo());
     setDescription('');

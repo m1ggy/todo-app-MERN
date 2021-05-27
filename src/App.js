@@ -31,9 +31,6 @@ function App() {
       setSnackbar(true);
     }
   }, [msg]);
-  useEffect(() => {
-    console.log(msg);
-  }, []);
 
   const handleSnackbar = (event, reason) => {
     if (reason === 'clickaway') {

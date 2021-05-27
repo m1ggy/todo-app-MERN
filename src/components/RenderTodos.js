@@ -58,7 +58,6 @@ export default function RenderTodos() {
   }
 
   function handleDelete(id) {
-    console.log(id);
     dispatch(deleteTodo(id));
   }
   function handleUpdate(id, done) {
