@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Typography, Grid, Box } from '@material-ui/core';
+import { Button, Typography, Grid, Box, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RenderTodos from './components/RenderTodos';
 import MessageSnackbar from './components/MessageSnackbar';
@@ -54,6 +54,19 @@ function App() {
         spacing={3}
         overflow='hidden'
       >
+        <Grid item>
+          <Typography>
+            <Link
+              href='https://github.com/m1ggy'
+              style={{ marginRight: '20px' }}
+            >
+              Github
+            </Link>
+            <Link href='https://github.com/m1ggy/todo-app-mern'>
+              Repository
+            </Link>
+          </Typography>
+        </Grid>
         <Grid item>
           <Typography variant='h1'>Todo App using MERN Stack</Typography>
         </Grid>
