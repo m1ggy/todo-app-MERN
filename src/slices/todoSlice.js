@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { post, get } from '../utils/actions';
-import axios from 'axios';
 export const todoSlice = createSlice({
   name: 'todo',
   initialState: {
@@ -21,7 +20,7 @@ export const todoSlice = createSlice({
 export const { setTodo, setMsg } = todoSlice.actions;
 
 export const addNewTodo = (todo) => (dispatch) => {
-  post('http://localhost:5000/api/add-new-todo', todo).then((res) => {
+  post(`${process.env.API}/add-new-todo`, todo).then((res) => {
     if (res.status === 200) {
       getTodo();
       dispatch(setMsg('Successfully created todo'));
@@ -31,8 +30,7 @@ export const addNewTodo = (todo) => (dispatch) => {
   });
 };
 export const deleteTodo = (id) => (dispatch) => {
-  axios
-    .post('http://localhost:5000/api/delete-todo', { id: id })
+  post(`${process.env.API}/delete-todo`, { id: id })
     .then((res) => {
       if (res.status === 200) {
         dispatch(getTodo());
@@ -47,7 +45,7 @@ export const deleteTodo = (id) => (dispatch) => {
 };
 
 export const updateTodo = (id, done) => (dispatch) => {
-  post('http://localhost:5000/api/update-todo', { id, done })
+  post(`${process.env.API}/update-todo`, { id, done })
     .then((res) => {
       if (res.status === 200) {
         dispatch(getTodo());
@@ -61,7 +59,7 @@ export const updateTodo = (id, done) => (dispatch) => {
 };
 
 export const getTodo = () => (dispatch) => {
-  get('http://localhost:5000/api/').then((res) => {
+  get(`${process.env.API}/`).then((res) => {
     dispatch(setTodo(res.data));
   });
 };
