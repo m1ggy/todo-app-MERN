@@ -36,7 +36,7 @@ export const deleteTodo = (id) => (dispatch) => {
     .then((res) => {
       if (res.status === 200) {
         dispatch(getTodo());
-        dispatch(setMsg('successfully deleted todo'));
+        dispatch(setMsg('Successfully deleted todo'));
       } else {
         dispatch(setMsg('failed to delete todo'));
       }
@@ -54,6 +54,7 @@ export const updateTodo = (id, done) => (dispatch) => {
     .then((res) => {
       if (res.status === 200) {
         dispatch(getTodo());
+        dispatch(setMsg('Marked todo as done'));
       } else {
         return console.log(res);
       }

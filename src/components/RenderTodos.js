@@ -30,12 +30,15 @@ const useStyles = makeStyles({
 
 export default function RenderTodos() {
   const dispatch = useDispatch();
-
+  const [loading, setLoading] = useState(true);
   const todos = useSelector((state) => state.todo.value);
   const [data, setData] = useState(todos);
 
   useEffect(() => {
     dispatch(getTodo());
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, []);
 
   useEffect(() => {
@@ -43,19 +46,6 @@ export default function RenderTodos() {
   }, [todos]);
 
   const classes = useStyles();
-
-  if (data.length === 0) {
-    return (
-      <Typography variant='h5'>
-        Database is Empty. Create a new todo to populate it.
-      </Typography>
-    );
-  }
-
-  if (!Array.isArray(data)) {
-    console.log(data);
-    return <CircularProgress />;
-  }
 
   function handleDelete(id) {
     dispatch(deleteTodo(id));
@@ -106,6 +96,18 @@ export default function RenderTodos() {
         </Grid>
       );
     });
+  }
+
+  if (loading) {
+    return <CircularProgress />;
+  } else {
+    if (data.length === 0) {
+      return (
+        <Typography>
+          Database is empty. Add a new todo to populate it.
+        </Typography>
+      );
+    }
   }
 
   return (
