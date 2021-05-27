@@ -20,17 +20,19 @@ export const todoSlice = createSlice({
 export const { setTodo, setMsg } = todoSlice.actions;
 
 export const addNewTodo = (todo) => (dispatch) => {
-  post(`${process.env.API}/add-new-todo`, todo).then((res) => {
-    if (res.status === 200) {
-      getTodo();
-      dispatch(setMsg('Successfully created todo'));
-    } else {
-      dispatch(setMsg('Failed to create Todo.'));
+  post(`https://fierce-refuge-86786.herokuapp.com/api/add-new-todo`, todo).then(
+    (res) => {
+      if (res.status === 200) {
+        getTodo();
+        dispatch(setMsg('Successfully created todo'));
+      } else {
+        dispatch(setMsg('Failed to create Todo.'));
+      }
     }
-  });
+  );
 };
 export const deleteTodo = (id) => (dispatch) => {
-  post(`${process.env.API}/delete-todo`, { id: id })
+  post(`https://fierce-refuge-86786.herokuapp.com/api/delete-todo`, { id: id })
     .then((res) => {
       if (res.status === 200) {
         dispatch(getTodo());
@@ -45,7 +47,10 @@ export const deleteTodo = (id) => (dispatch) => {
 };
 
 export const updateTodo = (id, done) => (dispatch) => {
-  post(`${process.env.API}/update-todo`, { id, done })
+  post(`https://fierce-refuge-86786.herokuapp.com/api/update-todo`, {
+    id,
+    done,
+  })
     .then((res) => {
       if (res.status === 200) {
         dispatch(getTodo());
@@ -59,7 +64,7 @@ export const updateTodo = (id, done) => (dispatch) => {
 };
 
 export const getTodo = () => (dispatch) => {
-  get(`${process.env.API}/`).then((res) => {
+  get(`https://fierce-refuge-86786.herokuapp.com/api/`).then((res) => {
     dispatch(setTodo(res.data));
   });
 };
