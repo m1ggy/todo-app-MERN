@@ -20,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start": "NPM_CONFIG_PRODUCTION=false cd todo-app-mern-server/ && npm install && node todo-app-mern-server/server.js",
+    "start": "NPM_CONFIG_PRODUCTION=false cd todo-app-mern-server/ && npm install &&cd ..&& node todo-app-mern-server/server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
   }, 
   "engines": {
